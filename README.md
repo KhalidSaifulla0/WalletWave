@@ -1,81 +1,70 @@
-# Turborepo starter
+# WalletWave
 
-This is an official starter Turborepo.
+WalletWave is a web application that allows users to deposit money into a digital wallet from their bank accounts, perform peer-to-peer (P2P) transfers, check their balance, and track their transaction history.
 
-## Using this example
+## Features
 
-Run the following command:
+- **Bank to Wallet Transfers:** Deposit money from your bank account into your WalletWave digital wallet.
+- **P2P Transfers:** Send and receive money instantly between WalletWave users.
+- **Balance Check:** View the current balance of your WalletWave wallet.
+- **Transaction History:** Track past transactions for a clear overview of your financial activities.
 
-```sh
-npx create-turbo@latest
-```
+## Tech Stack
 
-## What's inside?
+- **Frontend:**
+  - [Next.js](https://nextjs.org/)
+  - [Tailwind CSS](https://tailwindcss.com/)
+  - [Recoil](https://recoiljs.org/) for state management
+- **Backend:**
+  - [Next.js](https://nextjs.org/) for user-app
+  - [Express](https://expressjs.com/) for simulating bank webhooks
+  - [PostgreSQL](https://www.postgresql.org/) as the database
+  - [Prisma](https://www.prisma.io/) as the ORM
+- **Monorepo Management:**
+  - [Turborepo](https://turborepo.org/)
 
-This Turborepo includes the following packages/apps:
+## Getting Started
 
-### Apps and Packages
+### Prerequisites
 
-- `docs`: a [Next.js](https://nextjs.org/) app
-- `web`: another [Next.js](https://nextjs.org/) app
-- `@repo/ui`: a stub React component library shared by both `web` and `docs` applications
-- `@repo/eslint-config`: `eslint` configurations (includes `eslint-config-next` and `eslint-config-prettier`)
-- `@repo/typescript-config`: `tsconfig.json`s used throughout the monorepo
+- Node.js
+- PostgreSQL
 
-Each package/app is 100% [TypeScript](https://www.typescriptlang.org/).
+### Installation
 
-### Utilities
+1. **Clone the Repository**
 
-This Turborepo has some additional tools already setup for you:
+   ```bash
+   git clone https://github.com/khalidSaifulla0/walletwave.git
+   cd walletwave
+   ```
 
-- [TypeScript](https://www.typescriptlang.org/) for static type checking
-- [ESLint](https://eslint.org/) for code linting
-- [Prettier](https://prettier.io) for code formatting
+2. **Install Dependencies**
+   ```bash
+   npm install
+   ```
+3. **Set Up Environment Variables**
+   Create a .env file in the db directory and add the following:
 
-### Build
+   ```bash
+   DATABASE_URL="postgresql://user:password@localhost:5432/walletwave"
+   ```
 
-To build all apps and packages, run the following command:
+   Create a .env file in the user-app directory and add the following:
 
-```
-cd my-turborepo
-pnpm build
-```
+   ```bash
+   cd apps/user-app
+   touch .env
+   echo "JWT_SECRET=test
+   NEXTAUTH_URL=http://localhost:3000"
+   ```
 
-### Develop
-
-To develop all apps and packages, run the following command:
-
-```
-cd my-turborepo
-pnpm dev
-```
-
-### Remote Caching
-
-Turborepo can use a technique known as [Remote Caching](https://turbo.build/repo/docs/core-concepts/remote-caching) to share cache artifacts across machines, enabling you to share build caches with your team and CI/CD pipelines.
-
-By default, Turborepo will cache locally. To enable Remote Caching you will need an account with Vercel. If you don't have an account you can [create one](https://vercel.com/signup), then enter the following commands:
-
-```
-cd my-turborepo
-npx turbo login
-```
-
-This will authenticate the Turborepo CLI with your [Vercel account](https://vercel.com/docs/concepts/personal-accounts/overview).
-
-Next, you can link your Turborepo to your Remote Cache by running the following command from the root of your Turborepo:
-
-```
-npx turbo link
-```
-
-## Useful Links
-
-Learn more about the power of Turborepo:
-
-- [Tasks](https://turbo.build/repo/docs/core-concepts/monorepos/running-tasks)
-- [Caching](https://turbo.build/repo/docs/core-concepts/caching)
-- [Remote Caching](https://turbo.build/repo/docs/core-concepts/remote-caching)
-- [Filtering](https://turbo.build/repo/docs/core-concepts/monorepos/filtering)
-- [Configuration Options](https://turbo.build/repo/docs/reference/configuration)
-- [CLI Usage](https://turbo.build/repo/docs/reference/command-line-reference)
+4. **Set Up Database**
+   ```bash
+   npx prisma migrate dev --name init
+   npx prisma generate
+   ```
+5. **Start the Development Server**
+   ```bash
+   npm run dev
+   ```
