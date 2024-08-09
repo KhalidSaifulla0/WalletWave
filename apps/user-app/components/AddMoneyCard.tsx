@@ -4,7 +4,7 @@ import { Card } from "@repo/ui/card";
 import { Select } from "@repo/ui/select";
 import { useState } from "react";
 import { TextInput } from "@repo/ui/textInput";
-
+import { createOnRampTransaction } from "../app/lib/actions/createOnRampTransactions";
 const SUPPORTED_BANKS = [
   {
     name: "HDFC Bank",
@@ -51,6 +51,7 @@ export const AddMoney = () => {
         <div className="flex justify-center pt-4">
           <Button
             onClick={async () => {
+              await createOnRampTransaction(provider, value);
               window.location.href = redirectUrl || "";
             }}
           >
