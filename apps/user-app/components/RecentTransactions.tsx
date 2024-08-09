@@ -11,7 +11,7 @@ export const RecentTransactions = ({
 }) => {
   if (!transactions.length) {
     return (
-      <Card title="Recent Transactions">
+      <Card title="Recent Debits">
         <div className="text-center pb-8 pt-8">No Recent transactions</div>
       </Card>
     );
